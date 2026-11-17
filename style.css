@@ -1,0 +1,597 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 15px;
+  min-height: 100vh;
+  background: #10000e;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* BACKGROUND NEON */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, #ff00d955, transparent 30%),
+    radial-gradient(circle at 80% 40%, #a000ff44, transparent 35%),
+    radial-gradient(circle at 50% 90%, #ff009955, transparent 40%),
+    radial-gradient(#ff00d9 1px, transparent 1.5px);
+  background-size: auto, auto, auto, 55px 55px;
+  animation: bgGlow 3s infinite alternate;
+}
+
+@keyframes bgGlow {
+  from { filter: brightness(.7); }
+  to { filter: brightness(1.5); }
+}
+
+/* LOVE BERJALAN */
+.love-background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.love-background span {
+  position: absolute;
+  bottom: -60px;
+  color: #ff00e5;
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #ff00d9,
+    0 0 25px #ff00d9,
+    0 0 40px #ff00d9;
+  animation: loveFloat 10s linear infinite;
+}
+
+.love-background span:nth-child(1) {left: 5%; animation-delay: 0s;}
+.love-background span:nth-child(2) {left: 15%; animation-delay: 2s;}
+.love-background span:nth-child(3) {left: 25%; animation-delay: 4s;}
+.love-background span:nth-child(4) {left: 35%; animation-delay: 1s;}
+.love-background span:nth-child(5) {left: 45%; animation-delay: 3s;}
+.love-background span:nth-child(6) {left: 55%; animation-delay: 5s;}
+.love-background span:nth-child(7) {left: 65%; animation-delay: 2s;}
+.love-background span:nth-child(8) {left: 75%; animation-delay: 4s;}
+.love-background span:nth-child(9) {left: 85%; animation-delay: 1s;}
+.love-background span:nth-child(10) {left: 95%; animation-delay: 3s;}
+.love-background span:nth-child(11) {left: 40%; animation-delay: 6s;}
+.love-background span:nth-child(12) {left: 90%; animation-delay: 7s;}
+
+@keyframes loveFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {opacity: 1;}
+  85% {opacity: 1;}
+  100% {
+    transform: translateY(-110vh) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* KONTEN UTAMA */
+.app {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* PANEL ATAS */
+.top-panel {
+  position: relative;
+  isolation: isolate;
+  padding: 12px;
+  border-radius: 22px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.top-panel::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  z-index: -2;
+  background: conic-gradient(
+    transparent,
+    #ff00d9,
+    white,
+    #ff00d9,
+    transparent 35%,
+    transparent 60%,
+    #ff00d9,
+    white,
+    #ff00d9,
+    transparent
+  );
+  animation: borderRotate 3s linear infinite;
+}
+
+.top-panel::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 19px;
+  background: #150014;
+  z-index: -1;
+}
+
+@keyframes borderRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* JUDUL */
+h1 {
+  position: relative;
+  text-align: center;
+  margin: 0 0 25px;
+  padding: 10px 0;
+  font-size: clamp(22px, 4vw, 48px);
+  font-weight: 900;
+  font-style: italic;
+  color: white;
+  text-shadow:
+    0 0 5px white,
+    0 0 10px #ff00d9,
+    0 0 25px #ff00d9,
+    0 0 45px #ff00d9;
+  animation: titleGlow 1.5s infinite alternate;
+}
+
+h1::before {
+  content: "♛";
+  display: block;
+  color: #ff00e5;
+  font-size: 30px;
+  font-style: normal;
+  text-shadow: 0 0 15px #ff00d9;
+}
+
+h1::after {
+  content: "♡";
+  padding-left: 15px;
+}
+
+@keyframes titleGlow {
+  from {filter: brightness(.8);}
+  to {filter: brightness(1.5);}
+}
+
+/* INPUT */
+textarea {
+  display: block;
+  width: 100%;
+  height: 180px;
+  padding: 20px;
+  resize: vertical;
+  outline: none;
+  background: #160011;
+  color: white;
+  border: 3px solid #ff00d9;
+  border-radius: 18px;
+  font-family: monospace;
+  font-size: 15px;
+  box-shadow:
+    0 0 5px white,
+    0 0 12px #ff00d9,
+    0 0 30px #ff00d9,
+    inset 0 0 20px #800052;
+}
+
+textarea::placeholder {
+  color: #ff45e5;
+}
+
+textarea:focus {
+  box-shadow:
+    0 0 10px white,
+    0 0 25px #ff00d9,
+    0 0 45px #ff00d9,
+    inset 0 0 20px #ff00d9;
+}
+
+/* TOMBOL */
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+button {
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 13px 25px;
+  border: 2px solid white;
+  border-radius: 35px;
+  background: linear-gradient(100deg, #e000ff, #ff009d);
+  box-shadow:
+    0 0 8px white,
+    0 0 18px #ff00d9,
+    0 0 35px #ff00d9;
+  transition: .3s;
+}
+
+button:hover {
+  transform: scale(1.06);
+  filter: brightness(1.4);
+  box-shadow:
+    0 0 15px white,
+    0 0 30px #ff00d9,
+    0 0 50px #ff00d9;
+}
+
+/* STATUS */
+#status {
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 15px 0;
+  text-shadow:
+    0 0 5px white,
+    0 0 15px #ff00d9;
+}
+
+/* TABEL */
+.table-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border: 3px solid #ff00d9;
+  border-radius: 22px;
+  box-shadow:
+    0 0 8px white,
+    0 0 18px #ff00d9,
+    0 0 40px #ff00d9;
+  animation: tableGlow 2s infinite alternate;
+}
+
+@keyframes tableGlow {
+  from {
+    box-shadow: 0 0 10px #ff00d9;
+  }
+  to {
+    box-shadow:
+      0 0 15px white,
+      0 0 30px #ff00d9,
+      0 0 55px #ff00d9;
+  }
+}
+
+table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+  text-align: center;
+  background: #160011;
+}
+
+/* HEADER PINK */
+thead th {
+  position: relative;
+  height: 90px;
+  padding: 12px;
+  font-size: 15px;
+  color: white;
+  border: 1px solid #ff9bf0;
+  background: linear-gradient(
+    110deg,
+    #d000ff,
+    #ff00a8,
+    #e000ff,
+    #ff00a8
+  );
+  background-size: 300% 100%;
+  animation: headerMove 4s linear infinite,
+             headerGlow 1.5s infinite alternate;
+}
+
+@keyframes headerMove {
+  to {background-position: 300% 0;}
+}
+
+@keyframes headerGlow {
+  from {text-shadow: 0 0 5px white;}
+  to {text-shadow: 0 0 15px white, 0 0 25px #ff00d9;}
+}
+
+/* TOMBOL COPY */
+.copy-btn {
+  display: block;
+  margin: 10px auto 0;
+  padding: 9px 17px;
+  font-size: 13px;
+  border: 2px solid white;
+  background: #bd00cc;
+}
+
+/* ISI TABEL */
+tbody tr {
+  background: #180017;
+  transition: .3s;
+  animation: rowGlow 2.5s infinite alternate;
+}
+
+tbody td {
+  padding: 14px 8px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid #ff00d9;
+  text-shadow:
+    0 0 5px white,
+    0 0 10px #ff00d9;
+}
+
+@keyframes rowGlow {
+  from {background-color: #180017;}
+  to {background-color: #310026;}
+}
+
+tbody tr:hover {
+  background: #8c006b;
+  box-shadow:
+    inset 0 0 15px white,
+    0 0 20px #ff00d9;
+}
+
+tbody tr:hover td {
+  text-shadow:
+    0 0 5px white,
+    0 0 15px #ff00d9,
+    0 0 25px #ff00d9;
+}
+
+/* KILAUAN BERJALAN DI TABEL */
+.table-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 40%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.13),
+    transparent
+  );
+  animation: tableShine 5s linear infinite;
+}
+
+@keyframes tableShine {
+  to {left: 150%;}
+}
+
+/* ORNAMEN BAWAH */
+.bottom-decoration {
+  text-align: center;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 35px;
+  letter-spacing: 15px;
+  color: #ff00d9;
+  text-shadow:
+    0 0 5px white,
+    0 0 15px #ff00d9,
+    0 0 30px #ff00d9;
+  animation: bottomGlow 1.5s infinite alternate;
+}
+
+@keyframes bottomGlow {
+  from {opacity: .5;}
+  to {opacity: 1;}
+}
+
+/* TAMPILAN HP */
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  h1 {
+    font-size: 21px;
+  }
+
+  textarea {
+    height: 140px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+
+  .bottom-decoration {
+    font-size: 22px;
+  }
+}
+
+/* =====================================
+   WHITE FLASH NEON BORDER TABLE
+===================================== */
+
+.table-wrap {
+  position: relative;
+  border: 2px solid #ff00d9;
+  animation: whiteNeonFlash 2.5s ease-in-out infinite;
+}
+
+@keyframes whiteNeonFlash {
+  0%, 100% {
+    border-color: #ff00d9;
+    box-shadow:
+      0 0 5px #ff00d9,
+      0 0 15px #ff00d9;
+  }
+
+  50% {
+    border-color: #ffffff;
+    box-shadow:
+      0 0 5px white,
+      0 0 15px white,
+      0 0 30px #ff00d9,
+      0 0 45px #ff00d9;
+  }
+}
+
+/* =====================================
+   KILAUAN PUTIH HEADER
+===================================== */
+
+thead th {
+  animation: headerWhiteFlash 2s ease-in-out infinite alternate;
+}
+
+@keyframes headerWhiteFlash {
+  from {
+    box-shadow: inset 0 0 5px #ff00d9;
+  }
+
+  to {
+    box-shadow:
+      inset 0 0 12px white,
+      0 0 15px #ff00d9;
+  }
+}
+
+/* =====================================
+   ISI TABEL BERKEDIP PINK PUTIH
+===================================== */
+
+tbody tr {
+  animation: tableRowFlash 2.5s ease-in-out infinite alternate;
+  transition: .4s;
+}
+
+tbody tr:nth-child(2) {
+  animation-delay: .3s;
+}
+
+tbody tr:nth-child(3) {
+  animation-delay: .6s;
+}
+
+tbody tr:nth-child(4) {
+  animation-delay: .9s;
+}
+
+tbody tr:nth-child(5) {
+  animation-delay: 1.2s;
+}
+
+tbody tr:nth-child(6) {
+  animation-delay: 1.5s;
+}
+
+@keyframes tableRowFlash {
+  from {
+    background-color: #190018;
+    box-shadow: inset 0 0 3px #ff00d9;
+  }
+
+  to {
+    background-color: #3b0735;
+    box-shadow:
+      inset 0 0 12px #ff00d9,
+      inset 0 0 20px #ffffff22;
+  }
+}
+
+/* =====================================
+   TEKS TABEL GLOW PUTIH
+===================================== */
+
+tbody td {
+  color: white;
+
+  animation: textWhiteGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textWhiteGlow {
+  from {
+    text-shadow:
+      0 0 3px #ff00d9;
+  }
+
+  to {
+    text-shadow:
+      0 0 5px white,
+      0 0 10px white,
+      0 0 18px #ff00d9;
+  }
+}
+
+/* =====================================
+   GARIS TABEL BERKILAU
+===================================== */
+
+tbody td {
+  border-color: #ff00d9;
+  transition: .4s;
+}
+
+tbody tr:hover td {
+  box-shadow:
+    inset 0 0 12px white,
+    0 0 15px #ff00d9;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 15px #ff00d9,
+    0 0 25px white;
+}
+
+/* =====================================
+   KILAUAN BERJALAN DI TABEL
+===================================== */
+
+.table-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 35%;
+  height: 100%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.1),
+    rgba(255,255,255,.7),
+    rgba(255,0,217,.2),
+    transparent
+  );
+
+  animation: whiteShineMove 4s ease-in-out infinite;
+}
+
+@keyframes whiteShineMove {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 150%;
+    opacity: 0;
+  }
+}
