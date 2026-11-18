@@ -13,6 +13,18 @@ body {
   overflow-x: hidden;
 }
 
+body {
+    background-image:
+        linear-gradient(rgba(12, 0, 15, 0.40), rgba(12, 0, 15, 0.60)),
+        url("background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
 /* BACKGROUND NEON */
 body::before {
   content: "";
